@@ -3,13 +3,12 @@ import React from 'react'
 
 
 
+
 const CustomButton = ({ title, onPress }) => {
 
     return (
 
-        <TouchableOpacity onPress={() => {
-            console.log('React native customized button pressed')
-        }}>
+        <TouchableOpacity onPress={onPress}>
             <View
                 style={{
                     backgroundColor: "#001933",
