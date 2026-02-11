@@ -75,7 +75,8 @@
 //   );
 // }
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { Link, useRouter } from 'expo-router'
 import { Button } from '@react-navigation/elements'
 import CustomButton from '@/components/custom-button'
@@ -83,7 +84,7 @@ import CustomButton from '@/components/custom-button'
 const Products = () => {
   const router = useRouter()
   return (
-    <View style={{ flex: 1, gap: 10, padding: 20 }}>
+    <SafeAreaView style={{ flex: 1, gap: 10, padding: 20 }}>
       <Text>
         Home
       </Text>
@@ -96,7 +97,7 @@ const Products = () => {
 
       <CustomButton title="Go to Products" onPress={() => router.push("/products")} />
       <CustomButton title="Go to cart" onPress={() => router.push("/cart")} />
-    </View>
+    </SafeAreaView>
   )
 }
 
