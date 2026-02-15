@@ -15,5 +15,5 @@
     "expo-env.d.ts",
     "components/custom-button.jsx",
     "app/index.jsx"
-  ]
+, "app/products.jsx"  ]
 }

@@ -9,12 +9,27 @@ NavigationBar.setButtonStyleAsync('dark')
 export default function RootLayout() {
   return <>
     <StatusBar style="dark" />
-    <Stack>
+    {/* <Stack>
       <Stack.Screen
         name="index"
         options={{
           headerShown: false,
         }} />
+
+      <Stack.Screen
+        name="products"
+        options={{
+          title: "Products Screen", 
+        }} />
+
+
+    </Stack> */}
+
+    <Stack
+      screenOptions={{
+        headerShown: false
+      }}>
+
     </Stack>
   </>
 }

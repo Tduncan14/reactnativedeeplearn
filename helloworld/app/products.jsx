@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { Link } from 'expo-router'
 import CustomButton from '@/components/custom-button'
 import { useRouter, RelativePathString } from 'expo-router'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 
 const Products = () => {
@@ -18,35 +19,39 @@ const Products = () => {
 
 
     return (
-        <View
-            style={{ flex: 1, padding: 20, gap: 10 }}>
 
-            {productsData.map((product) => (
-                <TouchableOpacity
-                    key={product.id}
-                    onPress={() => router.push(`/products/${product.id}`)}>
-                    <View
+        <SafeAreaView
+            style={{ flex: 1, padding: 20, gap: 20 }}>
+            <View
+                style={{ flex: 1, padding: 20, gap: 10 }}>
 
-                        style={{
-                            color: "#000",
-                            padding: 15,
-                            borderWidth: 1,
-                            borderColor: "#ccc",
-                            borderRadius: 5,
-                            backgroundColor: "#f9f9f9"
-                        }}>
+                {productsData.map((product) => (
+                    <TouchableOpacity
+                        key={product.id}
+                        onPress={() => router.push(`/products/${product.id}`)}>
+                        <View
 
-                        <Text>
-                            {product.name}
-                            {product.id}
-                        </Text>
-                    </View>
-                </TouchableOpacity>
+                            style={{
+                                color: "#000",
+                                padding: 15,
+                                borderWidth: 1,
+                                borderColor: "#ccc",
+                                borderRadius: 5,
+                                backgroundColor: "#f9f9f9"
+                            }}>
 
-            ))}
+                            <Text>
+                                {product.name}
+                                {product.id}
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+
+                ))}
 
 
-        </View>
+            </View>
+        </SafeAreaView>
     )
 }
 

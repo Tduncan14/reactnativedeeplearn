@@ -1,14 +1,21 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const cardScreen = () => {
     return (
-        <View>
-            <Text>
-                Cardscreen
-            </Text>
 
-        </View>
+        <SafeAreaView style={{
+            flex: 1,
+        }}>
+            <View>
+                <Text>
+                    Cardscreen
+                </Text>
+
+            </View>
+        </SafeAreaView>
+
     )
 }
 
