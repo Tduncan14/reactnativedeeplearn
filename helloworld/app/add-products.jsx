@@ -1,6 +1,7 @@
 import { View, Text, TextInput } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import CustomButton from '../components/custom-button'
 
 const AddProductScreen = () => {
 
@@ -64,13 +65,24 @@ const AddProductScreen = () => {
                             paddingHorizontal: 15,
                             borderRadius: 5,
                             height: 60,
+                            marginBottom: 20
 
                         }}
                         numberOfLines={20}
                         value={productDescription}
                         onChangeText={setProductDescription}
+                        multiline
 
                     />
+
+                    <CustomButton
+                        title="print value"
+
+                        onPress={() => {
+                            console.log("Product name:", productName)
+                            console.log("Product Description:", productDescription)
+
+                        }} />
                 </View>
 
 
