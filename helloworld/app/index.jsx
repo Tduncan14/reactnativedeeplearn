@@ -80,9 +80,11 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { Link, useRouter } from 'expo-router'
 import { Button } from '@react-navigation/elements'
 import CustomButton from '@/components/custom-button'
+import useProductsStore from './global-store/products-store'
 
 const Products = () => {
   const router = useRouter()
+  const { productsCount } = useProductsStore();
   return (
     <SafeAreaView style={{ flex: 1, gap: 10, padding: 20 }}>
       <Text>
@@ -91,6 +93,13 @@ const Products = () => {
 
       <Link href="/products">Go to products</Link>
       <Link href="/cart"> Go to Cart</Link>
+
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: "bold"
+        }}
+      >Products Count: {productsCount}</Text>
 
 
 
