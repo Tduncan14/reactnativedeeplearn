@@ -106,6 +106,7 @@ const Products = () => {
 
       <CustomButton title="Go to Products" onPress={() => router.push("/products")} />
       <CustomButton title="Go to cart" onPress={() => router.push("/cart")} />
+      <CustomButton title="Add Products" onPress={() => router.push("/add-products")} />
     </SafeAreaView>
   )
 }
