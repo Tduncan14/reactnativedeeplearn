@@ -10,23 +10,23 @@ import {
     Pressable,
     FlatList,
     TouchableOpacity,
-    ScrollView
+    KeyboardAvoidingView,
+    ScrollView,
+
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import CustomButton from '../components/custom-button'
 
 
+
 /* ---------------- DATA ---------------- */
 
 const data = [
-    { label: 'Item 1', value: '1' },
-    { label: 'Item 2', value: '2' },
-    { label: 'Item 3', value: '3' },
-    { label: 'Item 4', value: '4' },
-    { label: 'Item 5', value: '5' },
-    { label: 'Item 6', value: '6' },
-    { label: 'Item 7', value: '7' },
-    { label: 'Item 8', value: '8' },
+    { label: 'electronic', value: 'electronic' },
+    { label: 'games', value: 'games' },
+    { label: 'books', value: 'books' },
+    { label: 'Food', value: 'food' },
+
 ]
 
 /* ---------------- CUSTOM DROPDOWN ---------------- */
@@ -113,8 +113,8 @@ const ModalCalendar = ({ date, setDate }) => {
 
     return (
         <>
-            <Pressable style={styles.dateBox} onPress={() => setShow(true)}>
-                <Text>{date ? date.toDateString() : "Select launch date"}</Text>
+            <Pressable style={[styles.dateBox, { backgroundColor: 'lightblue' }]} onPress={() => setShow(true)}>
+                <Text style={{ textAlign: 'center', color: 'darkblue', fontWeight: 700 }}>{date ? date.toDateString() : "Select launch date"}</Text>
             </Pressable>
 
             <Modal visible={show} transparent animationType="fade">
@@ -176,62 +176,81 @@ const AddProductScreen = () => {
 
     const [productName, setProductName] = useState("")
     const [productDescription, setProductDescription] = useState("")
+    const [productPrice, setproductPrice] = useState('')
     const [productCategory, setProductCategory] = useState("")
     const [isFocus, setIsFocus] = useState(false)
     const [launchDate, setLaunchDate] = useState(null)
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 1, padding: 20, gap: 20 }}>
-                <Text style={{ fontSize: 20, fontWeight: "bold", padding: 20 }}>Add Product</Text>
+            <KeyboardAvoidingView style={{ flex: 1 }}>
+                <ScrollView style={{ flex: 1 }} behavior="height">
+                    <View style={{ flex: 1, padding: 20, gap: 20 }}>
+                        <Text style={{ fontSize: 20, fontWeight: "bold", padding: 20 }}>Add Product</Text>
 
-                <View>
-                    <Text style={{ marginBottom: 10, fontWeight: "bold" }}>Product Name:</Text>
-                    <TextInput
-                        style={styles.input}
-                        value={productName}
-                        onChangeText={setProductName}
-                    />
-                </View>
+                        <View>
+                            <Text style={{ marginBottom: 10, fontWeight: "bold" }}>Product Name:</Text>
+                            <TextInput
+                                style={styles.input}
+                                value={productName}
+                                onChangeText={setProductName}
+                            />
+                        </View>
 
-                <View>
-                    <Text style={{ marginBottom: 10, fontWeight: "bold" }}>Product Description:</Text>
-                    <TextInput
-                        style={[styles.input, { height: 100 }]}
-                        multiline
-                        value={productDescription}
-                        onChangeText={setProductDescription}
-                    />
-                </View>
 
-                <View style={styles.container}>
-                    <Text style={{ marginBottom: 10, fontWeight: "bold" }}>Category:</Text>
-                    <Dropdown
-                        data={data}
-                        value={productCategory}
-                        setValue={setProductCategory}
-                        isFocus={isFocus}
-                        setIsFocus={setIsFocus}
-                        placeholder="Select item"
-                    />
-                </View>
 
-                <ModalCalendar
-                    date={launchDate}
-                    setDate={setLaunchDate}
-                />
+                        <View>
+                            <Text style={{ marginBottom: 10, fontWeight: "bold" }}>Product Price:</Text>
+                            <TextInput
+                                style={styles.input}
+                                value={productPrice}
+                                onChangeText={setproductPrice}
+                                keyboardType='numeric'
+                            />
+                        </View>
 
-                <CustomButton
-                    title="print value"
-                    onPress={() => {
-                        console.log("Product name:", productName)
-                        console.log("Product Description:", productDescription)
-                        console.log("Category:", productCategory)
-                        console.log("Launch Date:", launchDate ? launchDate.toDateString() : "Not set")
-                    }}
-                />
 
-            </View>
+                        <View>
+                            <Text style={{ marginBottom: 10, fontWeight: "bold" }}>Product Description:</Text>
+                            <TextInput
+                                style={[styles.input, { height: 100 }]}
+                                multiline
+                                value={productDescription}
+                                onChangeText={setProductDescription}
+                            />
+                        </View>
+
+                        <View style={styles.container}>
+                            <Text style={{ marginBottom: 10, fontWeight: "bold" }}>Product Category:</Text>
+                            <Dropdown
+                                data={data}
+                                value={productCategory}
+                                setValue={setProductCategory}
+                                isFocus={isFocus}
+                                setIsFocus={setIsFocus}
+                                placeholder="Select Category"
+                            />
+                        </View>
+
+                        <ModalCalendar
+
+                            date={launchDate}
+                            setDate={setLaunchDate}
+                        />
+
+                        <CustomButton
+                            title="submit"
+                            onPress={() => {
+                                console.log("Product name:", productName)
+                                console.log("Product Description:", productDescription)
+                                console.log("Category:", productCategory)
+                                console.log("Launch Date:", launchDate ? launchDate.toDateString() : "Not set")
+                            }}
+                        />
+
+                    </View>
+                </ScrollView>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     )
 }
@@ -252,7 +271,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 15,
         borderRadius: 5,
-        height: 60,
+        height: 45,
     },
 
     dropdown: {
