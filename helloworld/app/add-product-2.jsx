@@ -12,8 +12,8 @@ const AddProduct2 = () => {
         formState: { errors },
     } = useForm({
         defaultValues: {
-            firstName: "first name",
-            lastName: " last name",
+            firstName: "",
+            lastName: "",
         },
     })
 
@@ -38,6 +38,7 @@ const AddProduct2 = () => {
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
                                 placeholder="First name"
+                                placeholderTextColor="#000"
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                                 value={value}
@@ -52,10 +53,11 @@ const AddProduct2 = () => {
                     <Controller
                         control={control}
                         name="lastName"
-                        rules={{ maxLength: 100 }}
+                        rules={{ maxLength: 100, minLength: 2 }}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextInput
                                 placeholder="Last name"
+                                placeholderTextColor="#000"
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                                 value={value}
@@ -84,6 +86,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 15,
         borderRadius: 5,
+        color: '#000',
         height: 45
     }
 })
