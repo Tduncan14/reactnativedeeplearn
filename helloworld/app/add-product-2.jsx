@@ -1,10 +1,10 @@
-
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Text, View, TextInput, Button, Alert } from "react-native"
+import { Text, View, TextInput, Button, StyleSheet } from "react-native"
 import { useForm, Controller } from "react-hook-form"
+import CustomButton from '../components/custom-button'
 
-const addProduct2 = () => {
+const AddProduct2 = () => {
 
     const {
         control,
@@ -12,53 +12,80 @@ const addProduct2 = () => {
         formState: { errors },
     } = useForm({
         defaultValues: {
-            firstName: "",
-            lastName: "",
+            firstName: "first name",
+            lastName: " last name",
         },
     })
-    const onSubmit = (data) => console.log(data)
 
+    const onSubmit = (data) => {
+        console.log(data)
+    }
 
     return (
-        <SafeAreaView>
-            <View>
-                <Controller
-                    control={control}
-                    rules={{
-                        required: true,
-                    }}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                        <TextInput
-                            placeholder="First name"
-                            onBlur={onBlur}
-                            onChangeText={onChange}
-                            value={value}
-                        />
-                    )}
-                    name="firstName"
-                />
-                {errors.firstName && <Text>This is required.</Text>}
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={{ flex: 1, padding: 20 }}>
 
-                <Controller
-                    control={control}
-                    rules={{
-                        maxLength: 100,
-                    }}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                        <TextInput
-                            placeholder="Last name"
-                            onBlur={onBlur}
-                            onChangeText={onChange}
-                            value={value}
-                        />
-                    )}
-                    name="lastName"
-                />
+                <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 20 }}>
+                    AddProduct2
+                </Text>
 
-                <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+                <View style={{ gap: 15 }}>
+
+                    <Controller
+                        control={control}
+                        name="firstName"
+                        rules={{ required: true }}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <TextInput
+                                placeholder="First name"
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                                style={styles.input}
+                            />
+                        )}
+                    />
+                    {errors.firstName && (
+                        <Text style={{ color: "red" }}>First name is required</Text>
+                    )}
+
+                    <Controller
+                        control={control}
+                        name="lastName"
+                        rules={{ maxLength: 100 }}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <TextInput
+                                placeholder="Last name"
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                                style={styles.input}
+                            />
+                        )}
+                    />
+
+                    <CustomButton
+                        title="Submit"
+                        onPress={handleSubmit(onSubmit)}
+                    />
+
+                </View>
             </View>
         </SafeAreaView>
     )
 }
 
-export default addProduct2
+
+const styles = StyleSheet.create({
+
+    input: {
+        borderColor: "#000",
+        borderWidth: 1,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        borderRadius: 5,
+        height: 45
+    }
+})
+
+export default AddProduct2
