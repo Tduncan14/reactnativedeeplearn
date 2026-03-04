@@ -41,6 +41,7 @@ const cardScreen = () => {
 
                 <Link href="/">Home</Link>
 
+
             </View>
         </SafeAreaView>
 
